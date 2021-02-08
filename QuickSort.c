@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void setdata(int *A, int count)/*function to take user input at runtime*/
+void setdata(int *A, int count) /*function to take user input at runtime*/
 {
     for (int i = 0; i < count; i++)
     {
@@ -10,7 +10,7 @@ void setdata(int *A, int count)/*function to take user input at runtime*/
     return;
 }
 
-void printdata(int *A, int n)/*function to print the elements of array*/
+void printdata(int *A, int n) /*function to print the elements of array*/
 {
     for (int i = 0; i < n; i++)
     {
@@ -20,29 +20,27 @@ void printdata(int *A, int n)/*function to print the elements of array*/
     return;
 }
 
-int divider(int* A, int start, int last)
-{
-    int pivot = last;
-    int pindex = start;
-    for (int i = start; i < last; i++)
-    {
-        if (A[i] <= A[pivot])
-        {
-            A[i] += A[pindex] - (A[pindex] = A[i]);
-            pindex++;
-        }
-    }
-    A[last] += A[pindex] - (A[pindex] = A[last]);
-    return pindex;
-}
+/*
+1. Inplace Sorting-algorithm.
+2. 
+*/
 
+/*Average Case Time complexity O(n*logn), */
+/*Worst Case Time Complexity O(n*n)*/
 void QuickSort(int *A, int start, int last)
 {
     if (start < last)
     {
-        int pindex = divider(A, start, last);
-        QuickSort(A, start, pindex-1);/*Left patition from the starting and upto the pivot*/
-        QuickSort(A, pindex+1, last);/*Right patition from the pivot and upto the end*/
+        int pivot;
+        for (int i = start; i < last; i++)
+        {
+            if (A[i] > A[pivot])
+            {
+                A[i] = A[i] + A[pivot] - (A[pivot] = A[i]);
+            }
+        }
+        QuickSort(A, start, pivot - 1); /*Left patition from the starting and upto the pivot*/
+        QuickSort(A, pivot + 1, last);  /*Right patition from the pivot and upto the end*/
     }
     return;
 }
@@ -58,7 +56,7 @@ int main(int argc, char const *argv[])
         *(A + n) = '\n';
         printf("\nEnter the elements: ");
         setdata(A, n);
-        QuickSort(A, 0, n-1);
+        QuickSort(A, 0, n - 1);
         printf("The sorted elements are: ");
         printdata(A, n);
         free(A); /*Securing the assets*/
