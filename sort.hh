@@ -94,7 +94,7 @@ void MergeSort(int *A, int n) /*Average case time-complexity: O(n*logn)*/
 }
 
 /***************Quick Sort*******************/
-/****************Modified Version*****************/
+/****************Modified Version lesser than previous*****************/
 void QuickSort(int *A, int start, int last)
 {
     if (start < last)
