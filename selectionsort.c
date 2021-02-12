@@ -32,7 +32,7 @@ void SelectionSort(int *A, int n)
         min = x;
         for (int y = x + 1; y < n; y++)
         {
-            if (A[y] < min)
+            if (A[y] < A[min])
             {
                 min = y;
             }
